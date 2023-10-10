@@ -41,6 +41,7 @@ const displayPhones = phones => {
         </div>
         `
         phoneContainer.appendChild(phoneCart);
+        toggleLoadingSpinner(false)
 
     }
 }
@@ -49,6 +50,7 @@ const displayPhones = phones => {
 // search 
 
 const handleSearch = ()=>{
+    toggleLoadingSpinner(true)
     const searchField = document.getElementById('search-field')
     const searchText = searchField.value;
     loadPhone(searchText);
@@ -57,10 +59,20 @@ const handleSearch = ()=>{
 }
 
 const handleSearch2 = () =>{
+    toggleLoadingSpinner(true)
     const searchField = document.getElementById('search-field2');
     const searchText = searchField.value;
     loadPhone(searchText);
 
+}
+
+const toggleLoadingSpinner = (isLoading)=>{
+    const loadingSpinner = document.getElementById('loading-spinner');
+    if (isLoading) {
+        loadingSpinner.classList.remove('hidden')
+    }else{
+        loadingSpinner.classList.add('hidden')
+    }
 }
 
 

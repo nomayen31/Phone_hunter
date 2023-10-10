@@ -18,15 +18,24 @@
     <main class="container mx-auto mt-8">
 
         <section class="bg-gray-100 p-4 m-4 ">
-            <input id="search-field" type="text" placeholder="Search Here ..." class="input input-bordered w-full max-w-xs" />
+            <input id="search-field" type="text" placeholder="Search Here ..."
+                class="input input-bordered w-full max-w-xs" />
             <button onclick="handleSearch()" class="btn btn-accent">Search</button>
 
             <!-- another -->
-            <input id="search-field2" type="text" placeholder="Search Here ..." class="input input-bordered w-full max-w-xs" />
-            <button onclick="handleSearch2()"  class="btn btn-primary">Another Search field</button>
+            <input id="search-field2" type="text" placeholder="Search Here ..."
+                class="input input-bordered w-full max-w-xs" />
+            <button onclick="handleSearch2()" class="btn btn-primary">Another Search field</button>
         </section>
         <!-- search  -->
         <section>
+            <div id="loading-spinner" class="text-center my-40 hidden ">
+                <span class="loading loading-spinner loading-xs"></span>
+                <span class="loading loading-spinner loading-sm"></span>
+                <span class="loading loading-spinner loading-md"></span>
+                <span class="loading loading-spinner  loading-lg"></span>
+            </div>
+
             <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             </div>
 
