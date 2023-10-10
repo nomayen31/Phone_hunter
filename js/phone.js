@@ -1,13 +1,13 @@
-const loadPhone = async (searchText) => {
+const loadPhone = async (searchText, isShowAll) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
 
     const data = await res.json();
     const phones = data.data
     // console.log(phones);
-    displayPhones(phones)
+    displayPhones(phones, isShowAll)
 }
 
-const displayPhones = phones => {
+const displayPhones = (phones, isShowAll) => {
     const phoneContainer = document.getElementById('phone-container');
 
     phoneContainer.textContent = ''
@@ -15,13 +15,15 @@ const displayPhones = phones => {
         // show all btn if 
 
         const showAllContainer = document.getElementById('show-all-container');
-    if( phones.length > 12){
+    if( phones.length > 12 && !isShowAll){
         showAllContainer.classList.remove('hidden')
     }else{
         showAllContainer.classList.add('hidden')
     }
 
-    phones = phones.slice(0,12)
+    if (!isShowAll) {
+        phones = phones.slice(0,12)
+    }
     
 
 
@@ -49,22 +51,22 @@ const displayPhones = phones => {
 
 // search 
 
-const handleSearch = ()=>{
+const handleSearch = (isShowAll)=>{
     toggleLoadingSpinner(true)
     const searchField = document.getElementById('search-field')
     const searchText = searchField.value;
-    loadPhone(searchText);
+    loadPhone(searchText, isShowAll);
     
 
 }
 
-const handleSearch2 = () =>{
-    toggleLoadingSpinner(true)
-    const searchField = document.getElementById('search-field2');
-    const searchText = searchField.value;
-    loadPhone(searchText);
+// const handleSearch2 = () =>{
+//     toggleLoadingSpinner(true)
+//     const searchField = document.getElementById('search-field2');
+//     const searchText = searchField.value;
+//     loadPhone(searchText);
 
-}
+// }
 
 const toggleLoadingSpinner = (isLoading)=>{
     const loadingSpinner = document.getElementById('loading-spinner');
@@ -75,6 +77,10 @@ const toggleLoadingSpinner = (isLoading)=>{
     }
 }
 
+
+const handleShowAll = ()=>{
+    handleSearch(true)
+}
 
 
 loadPhone()
