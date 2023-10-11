@@ -48,11 +48,15 @@
 
         <!-- modal  -->
         <!-- Open the modal using ID.showModal() method -->
-        <button class="btn" onclick="show_details_modal.showModal()">open modal</button>
+    
         <dialog id="show_details_modal" class="modal modal-bottom sm:modal-middle">
             <div class="modal-box">
-                <h3 class="font-bold text-lg">Hello!</h3>
-                <p class="py-4">Press ESC key or click the button below to close</p>
+                <figure><img id="show-detail-phone-image" src="${phone.image}" /></figure>
+                <h3 id="show-detail-phone-name" class="font-bold text-lg"></h3>
+                <p id="show-detail-phone-storage" class="py-4"></p>
+                <p id="show-detail-phone-relageDate" class="py-4"></p>
+                <p id="show-detail-phone-displaySize" class="py-4"></p>
+                <p id="show-detail-phone-Gps" class="py-4"></p>
                 <div class="modal-action">
                     <form method="dialog">
                         <!-- if there is a button in form, it will close the modal -->

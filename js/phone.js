@@ -1,4 +1,4 @@
-const loadPhone = async (searchText, isShowAll) => {
+const loadPhone = async (searchText = '13', isShowAll) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
 
     const data = await res.json();
@@ -32,13 +32,11 @@ const displayPhones = (phones, isShowAll) => {
         const phoneCart = document.createElement('div');
         phoneCart.classList = `card p-4 bg-gray-100 shadow-xl`
         phoneCart.innerHTML = `
-
-        <figure><img src="${phone.image}" /></figure>
         <div class="card-body">
             <h2 class="card-title">${phone.phone_name}</h2>
             <p>If a dog chews shoes whose shoes does he choose?</p>
             <div class="card-actions justify-center">
-                <button onClick="handleShowDetails('${phone.slug}')" class="btn btn-primary">Show Details </button>
+                <button onClick="handleShowDetails('${phone.slug}');" class="btn btn-primary">Show Details </button>
             </div>
         </div>
         `
@@ -52,10 +50,36 @@ const displayPhones = (phones, isShowAll) => {
 const handleShowDetails = async (id) =>{
     const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
     const data = await res.json();
-    console.log(data);
+   const phone = data.data
+    showPhoneDetails(phone)
      
 } 
 
+
+const showPhoneDetails = (phone) =>{
+    console.log(phone);
+    const phoneName = document.getElementById('show-detail-phone-name') 
+    const phoneImage = document.getElementById('show-detail-phone-image')
+    const phoneStorage = document.getElementById('show-detail-phone-storage')
+    const phonerelageDate = document.getElementById('show-detail-phone-relageDate')
+    const phonedisplaySize = document.getElementById('show-detail-phone-displaySize')
+    const phoneGps = document.getElementById('show-detail-phone-Gps')
+
+    phoneGps.innerText = phone.mainFeatures.sensors[1]
+
+
+    phonedisplaySize.innerText = phone.mainFeatures.displaySize;
+
+    phonerelageDate.innerText = phone.releaseDate
+
+    phoneStorage.innerText =phone.mainFeatures.storage;
+
+
+    phoneImage.src = phone.image
+
+    phoneName.innerText = phone.name;
+    show_details_modal.showModal()
+}
 // search 
 
 const handleSearch = (isShowAll)=>{
